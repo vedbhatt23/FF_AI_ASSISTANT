@@ -27,29 +27,53 @@ export default function Header({ onClear, messageCount }: HeaderProps) {
   }, []);
 
   return (
-    <header className="glass-card flex items-center justify-between px-6 py-4 m-3 mb-0">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ background: "var(--gradient-primary)" }}>
-          <Sparkles size={20} className="text-white" />
+    <header
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "14px 24px",
+        margin: "16px 16px 0 16px",
+        background: "rgba(30, 41, 59, 0.5)",
+        backdropFilter: "blur(20px)",
+        border: "1px solid rgba(99, 102, 241, 0.15)",
+        borderRadius: "16px",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+          }}
+        >
+          <Sparkles size={20} color="white" />
         </div>
         <div>
-          <h1 className="text-lg font-semibold gradient-text">AI Insights Assistant</h1>
-          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+          <h1 className="gradient-text" style={{ fontSize: "18px", fontWeight: 600, lineHeight: 1.2 }}>
+            AI Insights Assistant
+          </h1>
+          <p style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
             Entertainment Analytics Platform
           </p>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        {/* Status */}
-        <div className="flex items-center gap-2 text-xs" style={{ color: "var(--text-secondary)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#94a3b8" }}>
           <Activity size={14} />
-          <span className="flex items-center gap-1.5">
+          <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <span
-              className="w-2 h-2 rounded-full"
               style={{
-                background: isHealthy === null ? "var(--accent-amber)" : isHealthy ? "var(--accent-emerald)" : "var(--accent-rose)",
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: isHealthy === null ? "#f59e0b" : isHealthy ? "#10b981" : "#f43f5e",
                 boxShadow: isHealthy ? "0 0 8px rgba(16, 185, 129, 0.5)" : "none",
               }}
             />
@@ -57,15 +81,22 @@ export default function Header({ onClear, messageCount }: HeaderProps) {
           </span>
         </div>
 
-        {/* Clear */}
         {messageCount > 0 && (
           <button
             onClick={onClear}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 hover:scale-105"
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "6px 12px",
+              borderRadius: "8px",
+              fontSize: "12px",
+              fontWeight: 500,
               background: "rgba(244, 63, 94, 0.1)",
-              color: "var(--accent-rose)",
+              color: "#f43f5e",
               border: "1px solid rgba(244, 63, 94, 0.2)",
+              cursor: "pointer",
+              transition: "all 0.2s",
             }}
           >
             <Trash2 size={13} />

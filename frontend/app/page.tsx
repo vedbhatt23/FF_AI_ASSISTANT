@@ -10,7 +10,6 @@ export default function Home() {
   const chatHook = useChat();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -18,23 +17,67 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <div className="h-screen flex flex-col bg-slate-950 relative overflow-hidden">
-      {/* Background ambient light */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        background: "#0a0e1a",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* Background ambient blurs */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-20%",
+          left: "-10%",
+          width: "50%",
+          height: "50%",
+          background: "rgba(59, 130, 246, 0.06)",
+          borderRadius: "50%",
+          filter: "blur(120px)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-20%",
+          right: "-10%",
+          width: "50%",
+          height: "50%",
+          background: "rgba(139, 92, 246, 0.06)",
+          borderRadius: "50%",
+          filter: "blur(120px)",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* Header */}
       <Header onClear={chatHook.clearChat} messageCount={chatHook.messages.length} />
 
-      {/* Main Layout: Chat + Insights Panel */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden pb-4 px-4 gap-4">
-        {/* Left Column: Chat */}
-        <div className="flex-1 min-w-0 h-full overflow-hidden">
+      {/* Main Content */}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "row",
+          gap: "16px",
+          padding: "16px",
+          paddingTop: "8px",
+          minHeight: 0,
+          overflow: "hidden",
+        }}
+      >
+        {/* Chat Column */}
+        <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
           <ChatInterface chatHook={chatHook} />
         </div>
 
-        {/* Right Column: Insights/Trace Panel */}
-        <div className="w-full lg:w-[400px] xl:w-[450px] shrink-0 h-[40vh] lg:h-full overflow-hidden">
+        {/* Insights Panel Column */}
+        <div style={{ width: "380px", flexShrink: 0, display: "flex", flexDirection: "column" }}>
           <InsightsPanel history={chatHook.toolHistory} />
         </div>
       </div>

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, Loader2, PlaySquare, FileBarChart, Presentation, TrendingUp, HelpCircle } from "lucide-react";
+import { Send, Sparkles, Loader2, TrendingUp, FileBarChart, Presentation, HelpCircle, PlaySquare } from "lucide-react";
 import MessageBubble from "./MessageBubble";
-import FilterBar from "./FilterBar";
 import { useChat } from "../hooks/useChat";
 
 interface Props {
@@ -11,21 +10,19 @@ interface Props {
 }
 
 const SUGGESTIONS = [
-  { text: "Which titles performed best in 2025?", icon: <TrendingUp size={14} /> },
-  { text: "Why is Stellar Run trending recently?", icon: <Sparkles size={14} /> },
-  { text: "Compare Dark Orbit vs Last Kingdom", icon: <FileBarChart size={14} /> },
-  { text: "Which city had strongest engagement?", icon: <Presentation size={14} /> },
-  { text: "What explains weak comedy performance?", icon: <HelpCircle size={14} /> },
-  { text: "What recommendations would you give?", icon: <PlaySquare size={14} /> },
+  { text: "Which titles performed best in 2025?", icon: <TrendingUp size={15} /> },
+  { text: "Why is Stellar Run trending recently?", icon: <Sparkles size={15} /> },
+  { text: "Compare Dark Orbit vs Last Kingdom", icon: <FileBarChart size={15} /> },
+  { text: "Which city had strongest engagement?", icon: <Presentation size={15} /> },
+  { text: "What explains weak comedy performance?", icon: <HelpCircle size={15} /> },
+  { text: "What recommendations would you give?", icon: <PlaySquare size={15} /> },
 ];
 
 export default function ChatInterface({ chatHook }: Props) {
   const { messages, isLoading, sendMessage, error } = chatHook;
   const [input, setInput] = useState("");
-  const [filters, setFilters] = useState<Record<string, any> | undefined>();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
@@ -33,7 +30,7 @@ export default function ChatInterface({ chatHook }: Props) {
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
-    sendMessage(input, filters);
+    sendMessage(input);
     setInput("");
   };
 
@@ -45,93 +42,236 @@ export default function ChatInterface({ chatHook }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-900/40 rounded-2xl border border-gray-800/50 overflow-hidden relative shadow-lg">
-      {/* Messages Area */}
-      <div className="flex-1 min-h-0 overflow-y-auto custom-scrollbar px-6 pb-6 pt-2 relative">
-        <FilterBar onFilterChange={setFilters} />
-
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        background: "rgba(15, 23, 42, 0.5)",
+        borderRadius: "16px",
+        border: "1px solid rgba(99, 102, 241, 0.12)",
+        overflow: "hidden",
+      }}
+    >
+      {/* Scrollable Messages Area */}
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          overflowY: "auto",
+          padding: "24px",
+        }}
+      >
         {messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center max-w-xl mx-auto text-center animate-fade-in-up">
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: "var(--gradient-card)" }}>
-              <Sparkles size={32} style={{ color: "var(--accent-blue)" }} />
+          /* ── Welcome Screen ── */
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              textAlign: "center",
+              maxWidth: "560px",
+              margin: "0 auto",
+            }}
+          >
+            <div
+              style={{
+                width: "64px",
+                height: "64px",
+                borderRadius: "16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15))",
+                marginBottom: "24px",
+              }}
+            >
+              <Sparkles size={30} color="#3b82f6" />
             </div>
-            <h2 className="text-2xl font-semibold mb-3">Welcome to AI Insights</h2>
-            <p className="text-sm text-gray-400 mb-8 max-w-md">
+
+            <h2 style={{ fontSize: "26px", fontWeight: 700, color: "#f1f5f9", marginBottom: "10px" }}>
+              Welcome to AI Insights
+            </h2>
+            <p style={{ fontSize: "14px", color: "#94a3b8", marginBottom: "36px", lineHeight: 1.6, maxWidth: "420px" }}>
               Ask questions about movie performance, viewer demographics, marketing ROI, or internal strategy documents.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "12px",
+                width: "100%",
+              }}
+            >
               {SUGGESTIONS.map((s, i) => (
                 <button
                   key={i}
-                  onClick={() => sendMessage(s.text, filters)}
-                  className="flex items-center gap-3 p-3 rounded-xl text-left text-sm transition-all duration-200 hover:-translate-y-1 group"
-                  style={{ background: "rgba(30, 41, 59, 0.4)", border: "1px solid var(--border-glass)" }}
+                  onClick={() => sendMessage(s.text)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    padding: "14px 16px",
+                    borderRadius: "12px",
+                    textAlign: "left",
+                    fontSize: "13px",
+                    color: "#cbd5e1",
+                    background: "rgba(30, 41, 59, 0.5)",
+                    border: "1px solid rgba(99, 102, 241, 0.12)",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    lineHeight: 1.4,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(30, 41, 59, 0.8)";
+                    e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.3)";
+                    e.currentTarget.style.color = "#f1f5f9";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(30, 41, 59, 0.5)";
+                    e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.12)";
+                    e.currentTarget.style.color = "#cbd5e1";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
-                  <div className="text-blue-400 group-hover:text-blue-300 transition-colors">{s.icon}</div>
-                  <span className="text-gray-300 group-hover:text-white transition-colors">{s.text}</span>
+                  <span style={{ color: "#60a5fa", flexShrink: 0 }}>{s.icon}</span>
+                  <span>{s.text}</span>
                 </button>
               ))}
             </div>
           </div>
         ) : (
-          <div className="space-y-6 pt-4">
+          /* ── Message Thread ── */
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             {messages.map((msg) => (
               <MessageBubble key={msg.id} message={msg} />
             ))}
-            
+
             {isLoading && (
-              <div className="flex gap-3 animate-fade-in-up">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-gray-800 bg-gray-900/80">
-                  <Sparkles size={16} className="text-blue-500 opacity-50" />
+              <div style={{ display: "flex", gap: "12px" }} className="animate-fade-in-up">
+                <div
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "rgba(30, 41, 59, 0.8)",
+                    border: "1px solid rgba(99, 102, 241, 0.15)",
+                    flexShrink: 0,
+                  }}
+                >
+                  <Sparkles size={16} color="#3b82f6" style={{ opacity: 0.6 }} />
                 </div>
-                <div className="glass-card px-5 py-4 rounded-2xl rounded-tl-sm flex gap-1 items-center h-10">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full typing-dot"></div>
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full typing-dot"></div>
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full typing-dot"></div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "4px",
+                    alignItems: "center",
+                    padding: "10px 20px",
+                    background: "rgba(30, 41, 59, 0.5)",
+                    border: "1px solid rgba(99, 102, 241, 0.12)",
+                    borderRadius: "16px",
+                    borderTopLeftRadius: "4px",
+                  }}
+                >
+                  <div className="typing-dot" style={{ width: "6px", height: "6px", background: "#3b82f6", borderRadius: "50%" }} />
+                  <div className="typing-dot" style={{ width: "6px", height: "6px", background: "#3b82f6", borderRadius: "50%" }} />
+                  <div className="typing-dot" style={{ width: "6px", height: "6px", background: "#3b82f6", borderRadius: "50%" }} />
                 </div>
               </div>
             )}
-            
+
             {error && (
-               <div className="p-3 bg-red-900/20 border border-red-900/50 rounded-xl text-xs text-red-400 text-center animate-fade-in">
-                 {error}
-               </div>
+              <div
+                style={{
+                  padding: "12px",
+                  background: "rgba(127, 29, 29, 0.2)",
+                  border: "1px solid rgba(127, 29, 29, 0.5)",
+                  borderRadius: "12px",
+                  fontSize: "12px",
+                  color: "#fca5a5",
+                  textAlign: "center",
+                }}
+              >
+                {error}
+              </div>
             )}
             <div ref={messagesEndRef} />
           </div>
         )}
       </div>
 
-      {/* Input Area */}
-      <div className="shrink-0 p-4 pt-2 z-20 bg-[#0a0e1a] border-t border-gray-800/50 relative">
-        <form onSubmit={handleSubmit} className="relative group">
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-20 blur group-focus-within:opacity-40 transition-opacity"></div>
-          <div className="relative flex items-end gap-2 bg-gray-900/90 rounded-xl border border-gray-700/50 p-2 focus-within:border-gray-500/50 transition-colors">
-            <textarea
+      {/* ── Fixed Input Bar ── */}
+      <div
+        style={{
+          flexShrink: 0,
+          padding: "12px 16px 16px 16px",
+          borderTop: "1px solid rgba(99, 102, 241, 0.1)",
+          background: "rgba(10, 14, 26, 0.95)",
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(15, 23, 42, 0.8)",
+              borderRadius: "12px",
+              border: "1px solid rgba(99, 102, 241, 0.15)",
+              padding: "4px 4px 4px 16px",
+            }}
+          >
+            <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask anything about the entertainment data..."
-              className="flex-1 max-h-32 min-h-[44px] bg-transparent border-none outline-none resize-none px-3 py-2.5 text-sm text-gray-100 placeholder-gray-500"
-              rows={1}
+              style={{
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                fontSize: "14px",
+                color: "#f1f5f9",
+                padding: "10px 0",
+              }}
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ background: input.trim() && !isLoading ? "var(--gradient-primary)" : "rgba(255,255,255,0.05)" }}
+              style={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "10px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                border: "none",
+                cursor: input.trim() && !isLoading ? "pointer" : "not-allowed",
+                opacity: input.trim() && !isLoading ? 1 : 0.4,
+                background: input.trim() && !isLoading ? "linear-gradient(135deg, #3b82f6, #8b5cf6)" : "rgba(255,255,255,0.05)",
+                transition: "all 0.2s",
+              }}
             >
               {isLoading ? (
-                <Loader2 size={18} className="animate-spin text-gray-400" />
+                <Loader2 size={18} color="#94a3b8" className="animate-spin" />
               ) : (
-                <Send size={18} className={input.trim() ? "text-white ml-1" : "text-gray-500"} />
+                <Send size={16} color={input.trim() ? "white" : "#64748b"} />
               )}
             </button>
           </div>
         </form>
-        <div className="text-center mt-2">
-          <span className="text-[10px] text-gray-600">AI responses are generated based on internal structured & unstructured data sources.</span>
-        </div>
+        <p style={{ textAlign: "center", marginTop: "8px", fontSize: "10px", color: "#475569" }}>
+          AI responses are generated based on internal structured & unstructured data sources.
+        </p>
       </div>
     </div>
   );

@@ -14,47 +14,65 @@ export default function MessageBubble({ message }: Props) {
   const isUser = message.role === "user";
 
   return (
-    <div className={`flex gap-3 animate-fade-in-up ${isUser ? "flex-row-reverse" : ""}`}>
+    <div
+      className="animate-fade-in-up"
+      style={{
+        display: "flex",
+        gap: "12px",
+        flexDirection: isUser ? "row-reverse" : "row",
+      }}
+    >
       {/* Avatar */}
       <div
-        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-1"
         style={{
-          background: isUser ? "var(--gradient-primary)" : "rgba(30, 41, 59, 0.8)",
-          border: isUser ? "none" : "1px solid var(--border-glass)",
+          width: "32px",
+          height: "32px",
+          borderRadius: "8px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          marginTop: "4px",
+          background: isUser ? "linear-gradient(135deg, #3b82f6, #8b5cf6)" : "rgba(30, 41, 59, 0.8)",
+          border: isUser ? "none" : "1px solid rgba(99, 102, 241, 0.15)",
         }}
       >
-        {isUser ? <User size={16} className="text-white" /> : <Bot size={16} style={{ color: "var(--accent-blue)" }} />}
+        {isUser ? <User size={16} color="white" /> : <Bot size={16} color="#3b82f6" />}
       </div>
 
       {/* Content */}
-      <div className={`max-w-[85%] ${isUser ? "items-end" : "items-start"}`}>
+      <div style={{ maxWidth: "80%" }}>
         <div
-          className="rounded-2xl px-4 py-3"
           style={{
+            borderRadius: "16px",
+            padding: "14px 18px",
             background: isUser
-              ? "var(--gradient-primary)"
-              : "var(--bg-glass)",
-            border: isUser ? "none" : "1px solid var(--border-glass)",
-            backdropFilter: isUser ? "none" : "blur(20px)",
+              ? "linear-gradient(135deg, #3b82f6, #8b5cf6)"
+              : "rgba(30, 41, 59, 0.5)",
+            border: isUser ? "none" : "1px solid rgba(99, 102, 241, 0.12)",
             borderTopRightRadius: isUser ? "4px" : "16px",
             borderTopLeftRadius: isUser ? "16px" : "4px",
           }}
         >
           {isUser ? (
-            <p className="text-sm text-white leading-relaxed">{message.content}</p>
+            <p style={{ fontSize: "14px", color: "white", lineHeight: 1.6, margin: 0 }}>{message.content}</p>
           ) : (
-            <div className="prose-chat text-sm overflow-x-auto max-w-full" style={{ color: "var(--text-primary)" }}>
+            <div className="prose-chat" style={{ fontSize: "14px", color: "#e2e8f0", overflowX: "auto" }}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
             </div>
           )}
         </div>
 
         {/* Chart */}
-        {message.chart_data && <ChartRenderer chartData={message.chart_data} />}
+        {message.chart_data && (
+          <div style={{ marginTop: "12px" }}>
+            <ChartRenderer chartData={message.chart_data} />
+          </div>
+        )}
 
         {/* Source badges */}
         {message.sources && message.sources.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-2 animate-fade-in">
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "8px" }}>
             {message.sources.map((s, i) => (
               <span
                 key={i}
@@ -69,7 +87,7 @@ export default function MessageBubble({ message }: Props) {
         )}
 
         {/* Timestamp */}
-        <p className="text-[10px] mt-1 px-1" style={{ color: "var(--text-muted)" }}>
+        <p style={{ fontSize: "10px", color: "#64748b", marginTop: "4px", paddingLeft: "4px" }}>
           {new Date(message.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
         </p>
       </div>
