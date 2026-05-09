@@ -1,0 +1,51 @@
+movie_id,title,genre,release_date,budget,revenue,rating,director,language
+1,Stellar Run,Sci-Fi,2025-02-01,78827621,245329658,8.2,James Rodriguez,Japanese
+2,Dark Orbit,Sci-Fi,2025-09-03,163509126,581242984,8.0,Michael O'Brien,Spanish
+3,Last Kingdom,Drama,2025-10-01,155658074,279913139,8.0,Aisha Patel,Hindi
+4,Neon Shadows,Thriller,2023-08-19,79676249,237870432,5.0,Priya Sharma,Japanese
+5,Echoes of Tomorrow,Drama,2024-06-09,46736211,64558932,8.1,James Rodriguez,English
+6,Crimson Tide II,Action,2024-02-12,97329911,236517551,8.2,Ahmed Hassan,Hindi
+7,The Final Frontier,Sci-Fi,2025-02-13,26152766,59903164,8.3,Robert Fischer,French
+8,Love in Paris,Romance,2025-04-23,23671069,21865577,5.9,Yuki Tanaka,English
+9,Midnight Express,Thriller,2023-02-13,79617971,161163319,8.3,Priya Sharma,French
+10,The Comedy Club,Comedy,2024-04-22,76666312,71425271,5.7,James Rodriguez,Korean
+11,Quantum Break,Action,2025-03-18,70715932,87771676,6.5,Lisa Park,Japanese
+12,Silent Waters,Drama,2025-04-22,92048983,283115073,8.1,Michael O'Brien,English
+13,Ghost Protocol,Thriller,2024-07-09,22767368,31183409,8.8,Ahmed Hassan,French
+14,Summer Vibes,Comedy,2023-11-16,111201629,121900875,5.6,Priya Sharma,French
+15,Iron Will,Action,2023-04-24,155691111,351120615,8.0,Emma Watson,Korean
+16,Ocean's Call,Drama,2024-06-08,42133144,91669965,5.4,Sarah Chen,English
+17,Laugh Factory,Comedy,2023-11-06,187665285,127601878,4.2,Emma Watson,Korean
+18,Red Alert,Action,2024-09-09,153505445,479567158,5.0,Ahmed Hassan,English
+19,Frozen Hearts,Romance,2025-09-25,76625340,220314447,6.4,Yuki Tanaka,Hindi
+20,Dark Comedy Hour,Comedy,2023-08-01,198835111,216385818,4.7,Aisha Patel,Spanish
+21,City Lights,Romance,2025-02-28,172852742,277567095,7.6,Robert Fischer,Spanish
+22,Steel Rain,Action,2023-06-25,48365489,109128183,8.1,Aisha Patel,English
+23,The Last Joke,Comedy,2025-06-16,10228248,4098264,4.9,Yuki Tanaka,Spanish
+24,Binary Stars,Sci-Fi,2023-04-19,26141184,26958470,6.9,James Rodriguez,Korean
+25,Haunted Manor,Horror,2023-03-22,132582641,445012498,5.7,Aisha Patel,Korean
+26,Deep Blue,Documentary,2024-04-18,190184933,255438880,6.2,Lisa Park,Japanese
+27,Wild Planet,Documentary,2024-08-17,126194888,142185209,5.9,Carlos Mendez,English
+28,Broken Compass,Thriller,2025-09-08,162958191,227259364,5.3,Lisa Park,English
+29,Funny Business,Comedy,2023-02-02,93698723,34084935,4.6,Lisa Park,Hindi
+30,War Zone,Action,2023-09-05,199173474,662428756,7.3,David Kim,Spanish
+31,Eternal Love,Romance,2024-07-07,30320389,32191557,6.7,Emma Watson,Hindi
+32,The Stand-up,Comedy,2024-12-02,185754918,164970788,5.6,Sarah Chen,Hindi
+33,Mars Colony,Sci-Fi,2025-06-26,34331682,50514679,5.8,David Kim,Spanish
+34,Night Stalker,Horror,2024-03-09,129185777,190481509,8.7,David Kim,Korean
+35,Nature's Fury,Documentary,2023-01-21,150112968,458936546,8.9,Michael O'Brien,Spanish
+36,Desert Storm,Action,2024-08-16,62377352,195525306,8.6,Priya Sharma,Hindi
+37,Heartstrings,Romance,2023-07-09,127140379,199632379,7.8,Ahmed Hassan,Korean
+38,Cosmic Drift,Sci-Fi,2025-12-16,46552957,61111195,5.9,Sarah Chen,Korean
+39,The Prankster,Comedy,2025-09-02,89182651,31343130,5.5,Aisha Patel,Korean
+40,Shadow Ops,Thriller,2023-01-17,26504757,82128299,5.3,James Rodriguez,Japanese
+41,Galactic Empire,Sci-Fi,2023-07-04,157921079,231319865,7.4,Robert Fischer,English
+42,Beach Party,Comedy,2024-11-19,156726947,120758809,6.3,Michael O'Brien,Japanese
+43,Mountain Peak,Documentary,2025-06-08,76300353,142576501,7.7,Yuki Tanaka,Hindi
+44,Rogue Agent,Thriller,2024-02-01,128020082,317122384,7.3,James Rodriguez,English
+45,Time Warp,Sci-Fi,2025-04-17,76189194,88199105,6.4,James Rodriguez,Spanish
+46,Secret Garden,Romance,2024-05-06,122624274,374140317,7.8,Robert Fischer,Japanese
+47,Urban Legends,Horror,2025-01-22,153874917,247480511,7.7,Priya Sharma,French
+48,Code Red,Action,2023-02-24,153504841,187231290,6.1,Michael O'Brien,Japanese
+49,Happy Endings,Comedy,2024-04-22,175251954,187102759,5.3,Yuki Tanaka,English
+50,Parallel Lives,Drama,2023-11-14,79270783,72852565,6.3,Priya Sharma,Japanese
