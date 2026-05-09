@@ -60,6 +60,7 @@ export default function ChatInterface({ chatHook }: Props) {
           minHeight: 0,
           overflowY: "auto",
           padding: "24px",
+          paddingBottom: "16px",
         }}
       >
         {messages.length === 0 ? (
@@ -211,9 +212,9 @@ export default function ChatInterface({ chatHook }: Props) {
       <div
         style={{
           flexShrink: 0,
-          padding: "12px 16px 16px 16px",
+          padding: "12px 20px 20px 20px",
           borderTop: "1px solid rgba(99, 102, 241, 0.1)",
-          background: "rgba(10, 14, 26, 0.95)",
+          background: "#0a0e1a",
         }}
       >
         <form onSubmit={handleSubmit}>
