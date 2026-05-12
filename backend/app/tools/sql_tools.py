@@ -276,7 +276,7 @@ def get_trending_titles(days: int = 30, limit: int = 10) -> list[dict[str, Any]]
         days: Number of recent days to analyze (default 30).
         limit: Number of trending titles to return.
     """
-    params = [days, days, 2 * days, days, min(limit, 20)]
+    params = [days, 2 * days, days, min(limit, 20)]
 
     sql = """
         SELECT m.title, m.genre, m.rating,
