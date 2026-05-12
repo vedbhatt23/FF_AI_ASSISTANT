@@ -20,11 +20,13 @@ export default function Home() {
     <div
       style={{
         height: "100vh",
+        maxHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         background: "#0a0e1a",
         overflow: "hidden",
-        position: "relative",
+        position: "fixed",
+        inset: 0,
       }}
     >
       {/* Background ambient blurs */}
@@ -72,12 +74,12 @@ export default function Home() {
         }}
       >
         {/* Chat Column */}
-        <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", height: "100%" }}>
           <ChatInterface chatHook={chatHook} />
         </div>
 
         {/* Insights Panel Column */}
-        <div style={{ width: "380px", flexShrink: 0, display: "flex", flexDirection: "column" }}>
+        <div style={{ width: "380px", flexShrink: 0, display: "flex", flexDirection: "column", height: "100%" }}>
           <InsightsPanel history={chatHook.toolHistory} />
         </div>
       </div>

@@ -21,10 +21,15 @@ const SUGGESTIONS = [
 export default function ChatInterface({ chatHook }: Props) {
   const { messages, isLoading, sendMessage, error } = chatHook;
   const [input, setInput] = useState("");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [messages, isLoading]);
 
   const handleSubmit = (e?: React.FormEvent) => {
@@ -46,21 +51,26 @@ export default function ChatInterface({ chatHook }: Props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        flex: 1,
         background: "rgba(15, 23, 42, 0.5)",
         borderRadius: "16px",
         border: "1px solid rgba(99, 102, 241, 0.12)",
         overflow: "hidden",
+        height: "100%",
+        maxHeight: "100%",
       }}
     >
       {/* Scrollable Messages Area */}
       <div
+        ref={scrollContainerRef}
         style={{
-          flex: 1,
+          flex: "1 1 0%",
           minHeight: 0,
           overflowY: "auto",
           padding: "24px",
           paddingBottom: "16px",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {messages.length === 0 ? (
@@ -203,7 +213,6 @@ export default function ChatInterface({ chatHook }: Props) {
                 {error}
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
         )}
       </div>
@@ -212,9 +221,9 @@ export default function ChatInterface({ chatHook }: Props) {
       <div
         style={{
           flexShrink: 0,
-          padding: "12px 20px 20px 20px",
+          padding: "16px 20px 20px 20px",
           borderTop: "1px solid rgba(99, 102, 241, 0.1)",
-          background: "#0a0e1a",
+          background: "rgba(15, 23, 42, 0.5)",
         }}
       >
         <form onSubmit={handleSubmit}>

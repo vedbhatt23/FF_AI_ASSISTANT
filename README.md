@@ -2,6 +2,12 @@
 
 A secure, multi-source AI analytics assistant built for an entertainment company. This system answers business questions by combining structured relational data, unstructured internal documents, and external files, providing fully explainable insights with clear data lineage.
 
+## 📸 Screenshots
+
+![Chat Interface](image.png)
+![Execution Trace](image%20copy.png)
+![Insights Panel](image%20copy%202.png)
+
 ## 🚀 Key Features
 
 * **Multi-Source Data Architecture**: Integrates SQLite (for structured, relational analytics) and ChromaDB (for semantic document search).
